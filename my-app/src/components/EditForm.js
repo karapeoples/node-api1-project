@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-const EditForm = ({ editItem, setEditItem }) => {
+const EditForm = ({ editItem, setEditItem, info, setInfo, turn, setTurn}) => {
 	console.log(editItem)
 
 	const handleChange = e => {
@@ -14,8 +14,12 @@ const EditForm = ({ editItem, setEditItem }) => {
 			.put(`http://localhost:4000/api/users/${editItem.id}`, editItem)
 			.then(res => {
 				console.log(res)
-				setEditItem(editItem)
-				window.location.reload(false)
+        setEditItem(editItem)
+        setTurn(false)
+				return axios.get('http://localhost:4000/api/users')
+			})
+			.then(res => {
+				setInfo(res.data)
 			})
 			.catch(err => console.log('There is an error', err))
 	}

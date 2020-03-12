@@ -19,17 +19,18 @@ function App() {
 	}, [])
 
 	return (
-		<div className='App'>
+    <div className='App'>
+      <div>
+        <AddForm info={info} setInfo={setInfo}/>
+			</div>
 			{info.map((list, index) => {
 				return (
-					<div key={index}>
-						<Card id={list.id} name={list.name} bio={list.bio} />
+					<div className='card-div' key={index}>
+						<Card id={list.id} name={list.name} bio={list.bio} info={info} setInfo={setInfo} />
 					</div>
 				)
 			})}
-			<div>
-				<AddForm />
-			</div>
+			
 		</div>
 	)
 }
