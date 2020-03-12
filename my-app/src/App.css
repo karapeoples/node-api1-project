@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+}
+
+.card-div{
+  display: flex;
+  border: 4px double dodgerblue;
+  width: 50%;
+  margin: 2% auto;
+  padding: 1%;
+  
+}
+.inside-card-section{
+  width: 100%;
+}
+.inside-card{
+  display: flex;
+}
+
+.inside-buttons{
+  width: 10%;
+}
+.inside-text{
+  width: 90%;
+}
