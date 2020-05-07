@@ -33,29 +33,21 @@ server.get('/api/users', (req, res) => {
 	res.status(200).json(users)
 })
 
-//GET BY ID (Cannot Get to Work on Postman)
-server.get('api/users/:id', (req, res) => {
-	const { id } = req.params
-
-	const found = users.find((user) => {
-		user.id === id
-	})
-
-	if (found) {
-		res.status(200).json(found)
-	} else {
-		res.status(404).json({ error: 'The USER does NOT Exist' })
-	}
+//GET BY ID (Works on Postman)
+server.get('/api/users/:id', (req, res) => {
+const { id } = req.params
+const found = users.find((user) => user.id === id)
+if (found) {
+	res.status(200).json(found)
+} else {
+	res.status(404).json({ error: 'The USER does NOT Exist' })
+}
 })
 
-//DELETE (Cannot get to Work on Postman)
+//DELETE (Works on Postman)
 server.delete('/api/users/:id', (req, res) => {
 	const { id } = req.params
-
-	const found = users.find((user) => {
-		user.id === id
-  })
-  
+	const found = users.find((user) => user.id === id)
 	if (found) {
 		users = users.filter((user) => user.id !== id)
 		res.status(200).json(found)
@@ -64,20 +56,18 @@ server.delete('/api/users/:id', (req, res) => {
 	}
 })
 
-//PUT(Cannot Get to Work on Postman)
-server.put('/api/user/:id', (req, res) => {
+//PUT(Works on Postman)
+server.put('/api/users/:id', (req, res) => {
 	const { id } = req.params
 	const body = req.body
 
-  let index = users.findIndex(user=> user.id ===id)
-  if (index !== -1) {
-    users[index] = body 
-    res.status(200).json(users[index])
-  }
-  else {
-    res.status(404).json({error: 'The USER does Not Exist'})
-  }
-		
+	let index = users.findIndex((user) => user.id === id)
+	if (index !== -1) {
+		users[index] = body
+		res.status(200).json(users[index])
+	} else {
+		res.status(404).json({ error: 'The USER does Not Exist' })
+	}
 })
 
 //Server Code
